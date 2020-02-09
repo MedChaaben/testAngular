@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: './not-found/not-found.module#NotFoundModule'
   },
   {
+    path: 'contact',
+    loadChildren: './contact/contact.module#ContactModule'
+  },
+  {
     path: '**',
     redirectTo: 'not-found'
   }
