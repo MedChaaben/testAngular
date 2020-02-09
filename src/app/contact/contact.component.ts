@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { ContactService } from './contact.service';
 
@@ -13,17 +13,17 @@ export class ContactComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor( private fb: FormBuilder, private contactService: ContactService) {
+  constructor (private fb: FormBuilder, private contactService: ContactService) {
     // To initialize FormGroup
     this.form = fb.group({
       'name': [null, Validators.required],
       'email': [null, Validators.required],
-      'phoneNumber': [null, Validators.required],
+      'phoneNumber': [null, Validators.compose([Validators.required, Validators.pattern('([0-9]{2} ){4}[0-9]{2}')])],
       'shouldAddToNewsletter': [null]
     });
   }
 
-  ngOnInit() {}
+  ngOnInit () {}
 
   onSubmit (): void {
     console.log(this.form);
@@ -47,7 +47,6 @@ export class ContactComponent implements OnInit {
   onReset () {
     this.form.reset();
   }
-
 
 
 }

@@ -18,9 +18,10 @@
 
   <div class="form-group">
     <label for="phoneNumber">Phone number</label>
-    <input type="phoneNumber" class="form-control" id="phoneNumber" formControlName="phoneNumber" aria-describedby="phoneNumber" placeholder="Enter email">
+    <input type="phoneNumber" class="form-control" id="phoneNumber" formControlName="phoneNumber" aria-describedby="phoneNumber" placeholder="Enter phone number (10 digits separated with space)">
     <small class="form-text text-muted" *ngIf="form.controls.phoneNumber.invalid && (form.controls.phoneNumber.dirty || form.controls.phoneNumber.touched)">
-      Please enter a phone number
+      <ng-container *ngIf="form.controls.phoneNumber.errors.required">Please enter a phone number</ng-container>
+      <ng-container *ngIf="form.controls.phoneNumber.errors.pattern">Error pattern</ng-container>
     </small>
   </div>
 

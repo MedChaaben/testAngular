@@ -18,7 +18,7 @@ mongoose.connect(dataBaseConfig.db, {
 );
 
 // Set up express js port
-const studentRoute = require('./routes/contact.route');
+const contractRoute = require('./routes/contact.route');
 
 const app = express();
 app.use(bodyParser.json());
@@ -31,8 +31,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist/testAngular')));
 
 
-// RESTful API root
-app.use('/api', studentRoute);
+// REST API root
+app.use('/api', contractRoute);
 
 // PORT
 const port = process.env.PORT || 8000;
