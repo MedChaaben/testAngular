@@ -11,6 +11,9 @@ contactRoute.route('/add-contact').post((req, res, next) => {
     if (error) {
       return next(error);
     } else {
+      if (data['shouldAddToNewsletter']) {
+        console.log(data);
+      }
       res.json(data)
     }
   })
@@ -23,33 +26,6 @@ contactRoute.route('/').get((req, res) => {
       return next(error)
     } else {
       res.json(data)
-    }
-  })
-});
-
-// Get single contact
-contactRoute.route('/get-contact/:id').get((req, res) => {
-  Contact.findById(req.params.id, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
-  })
-});
-
-
-// Update contact
-contactRoute.route('/patch-contact/:id').put((req, res, next) => {
-  Contact.findByIdAndUpdate(req.params.id, {
-    $set: req.body
-  }, (error, data) => {
-    if (error) {
-      console.log(error);
-      return next(error);
-    } else {
-      res.json(data);
-      console.log('Contact successfully updated!')
     }
   })
 });
