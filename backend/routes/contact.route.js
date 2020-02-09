@@ -32,7 +32,7 @@ contactRoute.route('/').get((req, res) => {
     } else {
       res.json(data);
     }
-  });
+  }).sort({ 'name' : 'asc'});
 });
 
 module.exports = contactRoute;
